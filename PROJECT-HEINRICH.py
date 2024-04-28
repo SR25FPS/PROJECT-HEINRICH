@@ -34,113 +34,20 @@ class player_model:
         Wound_Phrase = ["Argh!", "Ugh!", "Oof!", "Agh!"]
         print(random.choice(Wound_Phrase))
 
-class factionless_reg_hum_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["No Wait!", "Please!", "Dont!", "Dont please!", "wait! Wait! Wait!"]
-        print(random.choice(Beg_Life))
-
-class theheinrich_reg_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["...", "Bitte, töte mich nicht.. [I don't wanna die..]", "Please.. No..", "I can't die now..", "... Avenge Us.. König Heinrich."]
-        print(random.choice(Beg_Life))
-
-class theheinrich_loyal_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["...", "Für den König! [For The King!]", "You will not win...", "Heinrich will make you pay..", "Go to hell.."]
-        print(random.choice(Beg_Life))
-
-class theheinrich_hr_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["...", "Die Ritter werden dich mitnehmen. [The Knights Will Take You.]", "You will not win...", "Heinrich will make you pay..", "Go to hell.."]
-        print(random.choice(Beg_Life))
-
-class abyssaloutcast_reg_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["...", "No.. Dont!", "Have mercy!", "*The Body Was Consumed The Abyss below before they could say a word*"]
-        print(random.choice(Beg_Life))
-
-class abyssaloutcast_loyal_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["...", "The Abyss shall return to you.", "*The Sudden Dread of The Abyss Dawns On You", "You will regret this.", "Go to hell.."]
-        print(random.choice(Beg_Life))
-
-class abyssaloutcast_hr_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["...", "*The Body Explodes Into Pieces Upon Death*", "*The Sudden Dread of The Abyss Dawns On You"]
-        print(random.choice(Beg_Life))
-
-class trialsofone_weakenedmonster_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["*Upon The Death of The Creature You Recieve Blessings of EXP*"]
-        print(random.choice(Beg_Life))
-
-class monster_low_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["*The Creature Howls in Pain Seemingly Not Wanting To Die*"]
-        print(random.choice(Beg_Life))
-
-class monster_medium_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["*The Creature Stares At You With A Sharp Gaze*"]
-        print(random.choice(Beg_Life))
-
-class monster_high_enemy_model:
-    def __init__(self, inputDamage, inputHealth):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-
-    def SayBeg(self):
-        Beg_Life = ["*The Creature Mumbles Somehing, as if it learned how to speak.*", "C-cu@*! yo30. *The Creature tried to speak*"]
-        print(random.choice(Beg_Life))
-
-class boss_enemy_model:
-    def __init__(self, inputDamage, inputHealth, inputPhase):
-        self.dmg = int(inputDamage)
-        self.hp = int(inputHealth)
-        self.phase = inputPhase
-                # Phase 2? [TRUE/FALSE]
-            # POSSIBLE QUOTES:
-            # - GREAT ENEMY FELLED
+def fight(self, enemy_var_name):
+        while self.health > 0 and globals()[enemy_var_name].hp > 0:
+            damage = self.str * 5
+            globals()[enemy_var_name].hp -= damage
+            print(f"Player deals {damage} damage to {enemy_var_name}")
+            if globals()[enemy_var_name].hp <= 0:
+                print(f"{enemy_var_name} has been defeated!")
+                break
+            damage = globals()[enemy_var_name].dmg
+            self.health -= damage
+            print(f"{enemy_var_name} deals {damage} damage to Player")
+            if self.health <= 0:
+                print("Player has been defeated!")
+                sys.exit()
 
 # TEMP_Variables
 
