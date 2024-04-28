@@ -1,4 +1,3 @@
-# IMPORTS
 import sys
 import time
 import random
@@ -29,12 +28,13 @@ class player_model:
         self.wlp = int(inputWillpower)
         self.cha = int(inputCharisma)
         self.int = int(inputIntelligence)
+        self.health = 100
 
     def SayWound(self):
         Wound_Phrase = ["Argh!", "Ugh!", "Oof!", "Agh!"]
         print(random.choice(Wound_Phrase))
 
-def fight(self, enemy_var_name):
+    def fight(self, enemy_var_name):
         while self.health > 0 and globals()[enemy_var_name].hp > 0:
             damage = self.str * 5
             globals()[enemy_var_name].hp -= damage
@@ -49,9 +49,66 @@ def fight(self, enemy_var_name):
                 print("Player has been defeated!")
                 sys.exit()
 
+class factionless_reg_hum_enemy_model:
+    def __init__(self, inputDamage, inputHealth):
+        self.dmg = int(inputDamage)
+        self.hp = int(inputHealth)
+
+class theheinrich_reg_enemy_model:
+    def __init__(self, inputDamage, inputHealth):
+        self.dmg = int(inputDamage)
+        self.hp = int(inputHealth)
+
+class abyssaloutcast_reg_enemy_model:
+    def __init__(self, inputDamage, inputHealth):
+        self.dmg = int(inputDamage)
+        self.hp = int(inputHealth)
+
+class trialsofone_weakenedmonster_enemy_model:
+    def __init__(self, inputDamage, inputHealth):
+        self.dmg = int(inputDamage)
+        self.hp = int(inputHealth)
+
+class monster_low_enemy_model:
+    def __init__(self, inputDamage, inputHealth):
+        self.dmg = int(inputDamage)
+        self.hp = int(inputHealth)
+
+class monster_medium_enemy_model:
+    def __init__(self, inputDamage, inputHealth):
+        self.dmg = int(inputDamage)
+        self.hp = int(inputHealth)
+
+class monster_high_enemy_model:
+    def __init__(self, inputDamage, inputHealth):
+        self.dmg = int(inputDamage)
+        self.hp = int(inputHealth)
+
+class boss_enemy_model:
+    def __init__(self, inputDamage, inputHealth, inputPhase):
+        self.dmg = int(inputDamage)
+        self.hp = int(inputHealth)
+        self.phase = inputPhase
+                # Phase 2? [TRUE/FALSE]
+            # POSSIBLE QUOTES:
+            # - GREAT ENEMY FELLED
+
 # TEMP_Variables
 
 player = player_model(1, 1, 1, 1, 1, 1)
+Trialsofone = trialsofone_weakenedmonster_enemy_model(5, 25)
+Bandit = factionless_reg_hum_enemy_model(10, 30)
+Heinrich = theheinrich_reg_enemy_model(15, 70)
+HighMonster = monster_high_enemy_model(20, 85)
+Abyssaloutcast = abyssaloutcast_reg_enemy_model(25, 100)
+
+# Fighting the monsters
+
+player.fight("Trialsofone")
+player.fight("Bandit")
+player.fight("Heinrich")
+player.fight("HighMonster")
+player.fight("Abyssaloutcast")
 
 # Definitions
 
