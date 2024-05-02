@@ -129,15 +129,10 @@ class player_model:
 
             if hollowfication == 1:
                 delay_print("You feel a sharp pain in your chest, warning you to stop running.")
-
-            if hollowfication == 2:
-                delay_print("You feel a heavy pain in your heart making your conciousness hazy.")
-
-            if hollowfication == 3:
                 delay_print("???: Stop Running Coward. I did not posses and give you power for you to run away from a fight.")
                 delay_print("???: You WILL fight.")
 
-            if hollowfication > 3:
+            if hollowfication > 1:
                 delay_print("You feel a heavy pain in your chest, your body slowly losing it's power.")
                 delay_print("You walk closer to death as you get on your knees taking your final breath.")
                 delay_print("???: I warned you.")
