@@ -55,7 +55,8 @@ class player_model:
                 print("Choose your action:")
                 print("A: Fight")
                 print("B: Dodge")
-                print("C: Run")
+                print("C: Rest")
+                
                 Option = input("> ")
                 if Option == "A" and Stamina > 0:
                     damagemin = self.str * 3
@@ -72,43 +73,55 @@ class player_model:
                 if Option == "A" and Stamina <= 0:
                     print("You're out of stamina! You can't attack.")
                     continue
+                if Option == "C":
+                    Stamina += 10
+                    print("You rested and gained 10 stamina.")
+                    continue
+                
 
             # Player
-            damage = enemy.dmg
-            if Option == "B":
-                if Dexterity <= 1:
-                    DodgeChance = random.randint(1, 5)
-                    if DodgeChance == 3:
-                        damage = 0
-                        print("You succesfully dodged the enemies attack")
-                        Stamina -= 5
-                    else:
-                        self.health -= damage
-                        Stamina -= 10
-                if Dexterity >= 2 and Dexterity <= 5:
-                    DodgeChance = random.randint(1, 2)
-                    if DodgeChance == 2:
-                        damage = 0
-                        print("You succesfully dodged the enemies attack")
-                        Stamina -= 5
-                    else:
-                        self.health -= damage
-                        Stamina -= 10
-            if not Stamina == 0:
-                print(f"{enemy_var_name} dealt {damage} damage to Player")
-                print(f"Player has {self.health} HP left")
-                print("Player has", Stamina, "stamina left")
-                if enemy.hp <= 0:
-                    enemy.hp = 0
-                print(f"{enemy_var_name} hp is {enemy.hp}, The gods are cheering you on")
-                if enemy.hp <= 0:
-                    print(f"{enemy_var_name} has been defeated!")
-                    break
-                if self.health <= 0:
-                    print("Player has been defeated!")
-                    sys.exit()
-            else:
-                print("You have been defeated")
+                damage = enemy.dmg
+                if Option == "B" and Stamina > 0:
+                    if Dexterity <= 1:
+                        DodgeChance = random.randint(1, 5)
+                        if DodgeChance >= 3:
+                            damage = 0
+                            print("You succesfully dodged the enemies attack")
+                            Stamina -= 5
+                        else:
+                            print("You failed to dodge!")
+                            print(f"{enemy_var_name} dealt {damage} damage to Player")
+                            self.health -= damage
+                            Stamina -= 10
+                    if Dexterity >= 2 and Dexterity <= 5:
+                        DodgeChance = random.randint(1, 2)
+                        if DodgeChance == 2:
+                            damage = 0
+                            print("You succesfully dodged the enemies attack")
+                            Stamina -= 5
+                        else:
+                            self.health -= damage
+                            Stamina -= 10
+                            print(f"{enemy_var_name} dealt {damage} damage to Player")
+                
+                if Option == "B" and Stamina <= 0:
+                    print("You're out of stamina! You can't dodge, choose to rest!.")
+                    continue
+
+                if not Stamina == 0:
+                    print(f"{enemy_var_name} dealt {damage} damage to Player")
+                    print(f"Player has {self.health} HP left")
+                    print("Player has", Stamina, "stamina left")
+                    if enemy.hp <= 0:
+                        enemy.hp = 0
+                        print(f"{enemy_var_name} hp is {enemy.hp}, The gods are cheering you on")
+                    if enemy.hp <= 0:
+                        print(f"{enemy_var_name} has been defeated!")
+                    if self.health <= 0:
+                        print("Player has been defeated!")
+                        sys.exit()
+
+
         else:
             print("You successfully ran away but you feel something disappointed within you.")
             global hollowfication
@@ -189,8 +202,6 @@ Abyssaloutcast = abyssaloutcast_reg_enemy_model(25, 100)
 Boss = boss_enemy_model(30, 200, 0)
 
 # Fighting the monsters
-
-# player.fight("Abyssaloutcast")
 
 
 # Definitions
