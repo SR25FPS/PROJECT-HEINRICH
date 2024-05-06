@@ -21,7 +21,7 @@ def load_print(s):
 # Variables, Classes, Objects
 
 hollowfication = 0
-
+restcount = 0
 staminanone = ["You got too tired and your body missed it's hit."]
 
 class player_model:
@@ -31,7 +31,7 @@ class player_model:
         self.sta = sta
         self.wis = wis
         self.cha = cha
-        self.health = 250
+        self.health = 500
 
 
     def SayWound(self):
@@ -75,7 +75,52 @@ class player_model:
                     continue
                 if Option == "C":
                     Stamina += 10
+                    global restcount
+                    restcount = 0
+                    restcount += 1
                     print("You rested and gained 10 stamina.")
+                    if restcount == 1:
+                        delay_print("???: Cowardice")
+                        time.sleep(1)
+                    elif restcount == 2:
+                        delay_print("???: You are weak.")
+                        time.sleep(1)
+                    elif restcount == 3:
+                        delay_print("???: Arise, this is no place to rest!")
+                        time.sleep(1)
+                    elif restcount == 4:
+                        delay_print("???: I SAID FIGHT")
+                        time.sleep(1)
+                    elif restcount == 5:
+                        delay_print("???: I'm warning you my valiant knight.")
+                        time.sleep(1)
+                    elif restcount == 6:
+                        delay_print("???: ...")
+                        time.sleep(1)
+                    elif restcount == 7:
+                        delay_print("???: ...")
+                        time.sleep(1)
+                    elif restcount == 8:
+                        delay_print("???: You are too lazy. Is your stamina truly this weak?")
+                        time.sleep(1)
+                    elif restcount == 9:
+                        delay_print("???: Get UP.")
+                        time.sleep(1)
+                        time.sleep(1)
+                    elif restcount == 10:
+                        delay_print("???: Scum, are you this weak!?")
+                        time.sleep(1)
+                    elif restcount == 11:
+                        delay_print("T???: Get up, this is your final warning.")
+                        time.sleep(1)
+                    elif restcount == 12:
+                        delay_print("???: Unworthy scum.")
+                        delay_print("???: Get out of my sight, you are not worthy.")
+                        delay_print("- Your Body Feels a heavy chest pain before it blows open a hole in your chest.")
+                        delay_print("You have displeased your power.")
+                        delay_print("ENDING: Displeased, A Slothful Death. 3/3")
+                        time.sleep(1)
+                        sys.exit()
                     continue
                 
 
@@ -125,7 +170,7 @@ class player_model:
         else:
             print("You successfully ran away but you feel something disappointed within you.")
             global hollowfication
-            hollowfication += 1  # increment hollowfication by 1
+            hollowfication += 1  
 
             if hollowfication == 1:
                 delay_print("You feel a sharp pain in your chest, warning you to stop running.")
@@ -138,7 +183,7 @@ class player_model:
                 delay_print("???: I warned you.")
                 delay_print("Your Chest produces a hollow hole of emptiness, your body lies there nothing more than a mere corpse in the world of bloodshed.")
                 print()
-                print("ENDING: UNWORTHY, Rejected by One's Own Blood. (1/4)")
+                print("ENDING: UNWORTHY, Rejected by One's Own Blood. (1/3)")
                 sys.exit()
             
 
@@ -189,15 +234,21 @@ class boss_enemy_model:
 # TEMP_Variables
 
 player = player_model(1, 1, 1, 1, 1, 1)
-Trialsofone = trialsofone_weakenedmonster_enemy_model(5, 25)
+Megalodaunt = trialsofone_weakenedmonster_enemy_model(5, 25)
 Bandit = factionless_reg_hum_enemy_model(10, 30)
-Heinrich = theheinrich_reg_enemy_model(15, 70)
-HighMonster = monster_high_enemy_model(20, 85)
-Abyssaloutcast = abyssaloutcast_reg_enemy_model(25, 100)
-Boss = boss_enemy_model(30, 200, 0)
+PROJECT_XZY = theheinrich_reg_enemy_model(15, 70)
+Greater_Megalodaunt = monster_high_enemy_model(20, 85)
+Rogue_Assassin = abyssaloutcast_reg_enemy_model(25, 100)
+R3PLIC4T10N = boss_enemy_model(30, 200, 0)
 
-# Fighting the monsters
+# Fighting the monsters [TEMP]
 
+player.fight("Megalodaunt")
+player.fight("Bandit")
+player.fight("PROJECT_XZY")
+player.fight("Greater_Megalodaunt")
+player.fight("Rogue_Assassin")
+player.fight("R3PLIC4T10N")
 
 # Definitions
 
@@ -243,32 +294,15 @@ delay_print("Faced By A Powerful Being Will You Flater?")
 print("THE TRIALS OF ONE")
 delay_print("- A Road Where Only One May Walk -")
 
-delay_print("Will you falter under the face of certain death?")
-player.fight("Trialsofone")
-delay_print("Hmm.. you did well.")
-
-print()
-print()
-
-delay_print("How about this? Will you pass the fight between a human, your own kind?")
+player.fight("Megalodaunt")
 player.fight("Bandit")
-delay_print("Impressive... you might just be worthy.")
+player.fight("PROJECT_XZY")
+player.fight("Greater_Megalodaunt")
+player.fight("Rogue_Assassin")
+player.fight("R3PLIC4T10N")
 
-print()
-
-delay_print("Now witness, True Fear.")
-player.fight("HighMonster")
-delay_print("I didn't expect you to go this far..")
-
-print()
-print()
-
-delay_print("Now for your final trial.")
-player.fight("Boss")
-delay_print("I see.. great potential in you.")
-
-delay("I grant you a power.")
-delay("I grant you, The Freigben")
+delay_print("I grant you a power.")
+delay_print("I grant you, The Freigben")
 freigbenpowers = ["A - The Antithesis", "F - The Fear", "P - The Power",]
 freigeben = random.choice(freigbenpowers)
 
@@ -278,14 +312,39 @@ delay_print(freigeben)
 if freigeben == "A - The Antithesis":
         delay_print("The Ability To Reverse All Events Towards Your Enemy and The Most Powerful Ability.")
         player = player_model(20, 30, 40, 50, 25, 40)
-    
+        partname = ["Gegenpol", "Widerspruch", "Kontrast"]
+        partname = random.choice(partname)
+        if partname == "Gegenpol":
+            truename = "Gegenpol Einheit"
+        if partname == "Widerspruch":
+            truename = "Widerspruch Vereinigung"
+        if partname == "Kontrast":
+            truename = "Kontrast Unterschied"
+        
 if freigeben == "F - The Fear":
         delay_print("The Ability To Instill Fear Into Those Who See You.")
         player = player_model(30, 15, 20, 60, 10, 45)
+        partname = ["Angstgebrüll", "Schreckensblick", "Grauenschleier"]
+        partname = random.choice(partname)
+        truename = "Tatar Foras"
+
 if freigeben == "P - The Power":
         delay_print("The Ability To Overpower and Kill Those Who Defy You.")
         player = player_model(60, 60, 60, 30, 10, 25)
+        partname = ["Machtbeherrschung", "Kraftmeisterung", "Stärkeentfaltung"]
+        partname = random.choice(partname)
+        truename = ["Die Stärke"]
 
 print()
+delay_print("You make it out alive, as you're bestowed with a power, but yet, you do not know it's true name.")
+delay_print("???: You prove worthy of using a partial version of my power, make me proud and maybe I'll give you my full name.")
+print()
 
-delay_print("To Be Continued.. in.. HEINRICH 2!!")
+delay_print("My name is....")
+delay_print(partname)
+
+print()
+delay_print("Remember it, for It will allow you to call forth my abilities.")
+print()
+delay_print("Now go, make me proud. My Son, Born in The Dark")
+delay_print("Ending: Unequaled, Unrivaled. You Worship The King.")
